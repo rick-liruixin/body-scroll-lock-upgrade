@@ -7,9 +7,6 @@
   "typings": "lib/index.d.ts",
   "author": "Rick.li",
   "repository": "https://github.com/rick-liruixin/body-scroll-lock-upgrade.git",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "license": "MIT",
   "files": [
     "lib"
