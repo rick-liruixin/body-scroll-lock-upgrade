@@ -1,0 +1,49 @@
+{
+  "name": "body-scroll-lock-upgrade",
+  "version": "1.0.0",
+  "description": "Enables body scroll locking (for iOS Mobile and Tablet, Android, desktop Safari/Chrome/Firefox) without breaking scrolling of a target element (eg. modal/lightbox/flyouts/nav-menus)",
+  "main": "lib/index.js",
+  "module": "lib/index.esm.js",
+  "typings": "lib/index.d.ts",
+  "author": "Rick.li",
+  "repository": "https://github.com/rick-liruixin/body-scroll-lock-upgrade.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "body scroll",
+    "body scroll lock",
+    "react scroll lock",
+    "react scroll",
+    "scroll",
+    "lock",
+    "freeze",
+    "toggle",
+    "disable",
+    "overflow",
+    "modal",
+    "lightbox",
+    "react",
+    "vanilla-js",
+    "angular",
+    "vue",
+    "ios",
+    "mobile",
+    "desktop",
+    "tablet",
+    "bsl"
+  ],
+  "scripts": {
+    "build": "tsc && vite build",
+    "tsc": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0",
+    "vite-plugin-dts": "^1.7.1"
+  }
+}
