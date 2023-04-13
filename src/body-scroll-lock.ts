@@ -7,6 +7,7 @@ type PreviousBodyPositionType = {
   position: string;
   top: string;
   left: string;
+  width: string;
 };
 
 interface Lock {
@@ -37,6 +38,7 @@ const isIosDevice =
 type HandleScrollEvent = TouchEvent;
 
 let locks: Array<Lock> = [];
+let locksIndex: Map<any, number> = new Map();
 let documentListenerAdded: boolean = false;
 let initialClientY: number = -1;
 let previousBodyOverflowSetting: string | undefined;
@@ -127,6 +129,7 @@ const setPositionFixed = () =>
         position: document.body.style.position,
         top: document.body.style.top,
         left: document.body.style.left,
+        width: document.body.style.width,
       };
 
       // Update the dom inside an animation frame
@@ -134,6 +137,7 @@ const setPositionFixed = () =>
       document.body.style.position = "fixed";
       document.body.style.top = `${-scrollY}px`;
       document.body.style.left = `${-scrollX}px`;
+      document.body.style.width = "100%";
 
       setTimeout(
         () =>
@@ -160,6 +164,7 @@ const restorePositionSetting = () => {
     document.body.style.position = previousBodyPosition.position;
     document.body.style.top = previousBodyPosition.top;
     document.body.style.left = previousBodyPosition.left;
+    document.body.style.width = previousBodyPosition.width;
 
     // Restore scroll
     window.scrollTo(x, y);
@@ -218,6 +223,13 @@ export const disableBodyScroll = (
     return;
   }
 
+  locksIndex.set(
+    targetElement,
+    locksIndex?.get(targetElement)
+      ? (locksIndex?.get(targetElement) as number) + 1
+      : 1
+  );
+  console.log("locksIndex", locksIndex);
   // disableBodyScroll must not have been called on this targetElement before
   if (locks.some((lock) => lock.targetElement === targetElement)) {
     return;
@@ -227,7 +239,6 @@ export const disableBodyScroll = (
     targetElement,
     options: options || {},
   };
-
   locks = [...locks, lock];
 
   if (isIosDevice) {
@@ -289,6 +300,7 @@ export const clearAllBodyScrollLocks = (): void => {
   }
 
   locks = [];
+  locksIndex.clear();
 };
 
 /**
@@ -304,7 +316,15 @@ export const enableBodyScroll = (targetElement: HTMLElement): void => {
     return;
   }
 
-  locks = locks.filter((lock) => lock.targetElement !== targetElement);
+  locksIndex.set(
+    targetElement,
+    locksIndex?.get(targetElement)
+      ? (locksIndex?.get(targetElement) as number) - 1
+      : 0
+  );
+  if (locksIndex?.get(targetElement) === 0) {
+    locks = locks.filter((lock) => lock.targetElement !== targetElement);
+  }
 
   if (isIosDevice) {
     targetElement.ontouchstart = null;
@@ -320,9 +340,12 @@ export const enableBodyScroll = (targetElement: HTMLElement): void => {
     }
   }
 
-  if (isIosDevice) {
-    restorePositionSetting();
-  } else {
-    restoreOverflowSetting();
+  if (locksIndex?.get(targetElement) === 0) {
+    if (isIosDevice) {
+      restorePositionSetting();
+    } else {
+      restoreOverflowSetting();
+    }
+    locksIndex?.delete(targetElement);
   }
 };
