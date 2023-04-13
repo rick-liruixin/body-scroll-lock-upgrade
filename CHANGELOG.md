@@ -13,3 +13,4 @@
   #### New feature
 
   with a new version of typeScript
+  Added a react hook code example
