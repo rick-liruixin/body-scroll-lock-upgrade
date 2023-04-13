@@ -4,6 +4,16 @@ body-scroll-lock upgrade version, repair body-scroll-lock v4.0.0-beta.0 bug。
 
 They stopped maintenance. I had to work it out myself, using the same approach, with a new version of typeScript. And fix the original problem, available for everyone to use.
 
+# Changelog
+
+Refer to the [releases](https://github.com/rick-liruixin/body-scroll-lock-upgrade/releases) page.
+
+`If you think it works for you, please give me a star ⭐️ to encourage me`
+
+go to [github](https://github.com/rick-liruixin/body-scroll-lock-upgrade) ⭐️⭐️⭐️⭐️⭐️
+
+# source document
+
 <p align="left"> <img width="675" src="https://raw.githubusercontent.com/willmcpo/body-scroll-lock/master/images/logo.png" alt="Body scroll lock...just works with everything ;-)" /> </p>
 
 ## Why BSL?
@@ -338,7 +348,3 @@ Html:
 
 https://medium.com/jsdownunder/locking-body-scroll-for-all-devices-22def9615177
 https://stackoverflow.com/questions/41594997/ios-10-safari-prevent-scrolling-behind-a-fixed-overlay-and-maintain-scroll-posi
-
-## Changelog
-
-Refer to the [releases](https://github.com/willmcpo/body-scroll-lock/releases) page.
