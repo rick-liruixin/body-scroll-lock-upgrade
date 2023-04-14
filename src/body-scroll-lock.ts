@@ -323,6 +323,7 @@ export const enableBodyScroll = (targetElement: HTMLElement): void => {
   );
   if (locksIndex?.get(targetElement) === 0) {
     locks = locks.filter((lock) => lock.targetElement !== targetElement);
+    locksIndex?.delete(targetElement);
   }
 
   if (isIosDevice) {
@@ -339,12 +340,11 @@ export const enableBodyScroll = (targetElement: HTMLElement): void => {
     }
   }
 
-  if (locksIndex?.get(targetElement) === 0) {
+  if (locks.length === 0) {
     if (isIosDevice) {
       restorePositionSetting();
     } else {
       restoreOverflowSetting();
     }
-    locksIndex?.delete(targetElement);
   }
 };
