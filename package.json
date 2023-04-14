@@ -38,7 +38,7 @@
   ],
   "scripts": {
     "changeset": "changeset",
-    "version": "changeset version",
+    "version": "changeset version && tsc && vite build",
     "build": "tsc && vite build",
     "tsc": "tsc"
   },
