@@ -229,7 +229,6 @@ export const disableBodyScroll = (
       ? (locksIndex?.get(targetElement) as number) + 1
       : 1
   );
-  console.log("locksIndex", locksIndex);
   // disableBodyScroll must not have been called on this targetElement before
   if (locks.some((lock) => lock.targetElement === targetElement)) {
     return;
