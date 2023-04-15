@@ -6,6 +6,7 @@
   "module": "lib/index.esm.js",
   "typings": "lib/index.d.ts",
   "author": "Rick.li",
+  "homepage": "https://github.com/rick-liruixin/body-scroll-lock-upgrade",
   "repository": "https://github.com/rick-liruixin/body-scroll-lock-upgrade.git",
   "license": "MIT",
   "files": [
@@ -14,6 +15,7 @@
   "keywords": [
     "body scroll",
     "body scroll lock",
+    "body scroll lock upgrade",
     "react scroll lock",
     "react scroll",
     "scroll",
@@ -36,7 +38,7 @@
   ],
   "scripts": {
     "changeset": "changeset",
-    "version": "changeset version",
+    "version": "changeset version && tsc && vite build",
     "build": "tsc && vite build",
     "tsc": "tsc"
   },
@@ -44,6 +46,7 @@
     "@changesets/cli": "^2.26.1",
     "typescript": "^4.9.3",
     "vite": "^4.2.0",
+    "vite-plugin-banner": "^0.7.0",
     "vite-plugin-dts": "^1.7.1"
   }
 }

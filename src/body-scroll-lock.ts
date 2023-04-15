@@ -3,11 +3,13 @@ export type BodyScrollOptions = {
   allowTouchMove?: ((el: EventTarget) => boolean) | undefined;
 };
 
-type PreviousBodyPositionType = {
+type BodyStyleType = {
   position: string;
   top: string;
   left: string;
   width: string;
+  height: string;
+  overflow: string;
 };
 
 interface Lock {
@@ -42,7 +44,14 @@ let locksIndex: Map<any, number> = new Map();
 let documentListenerAdded: boolean = false;
 let initialClientY: number = -1;
 let previousBodyOverflowSetting: string | undefined;
-let previousBodyPosition: PreviousBodyPositionType | undefined;
+let htmlStyle:
+  | {
+      height: string;
+      overflow: string;
+    }
+  | undefined;
+let bodyStyle: BodyStyleType | undefined;
+
 let previousBodyPaddingRight: string | undefined;
 
 // returns true if `el` should be allowed to receive touchmove events.
@@ -123,21 +132,25 @@ const restoreOverflowSetting = () => {
 
 const setPositionFixed = () =>
   window.requestAnimationFrame(() => {
-    // If previousBodyPosition is already set, don't set it again.
-    if (previousBodyPosition === undefined) {
-      previousBodyPosition = {
-        position: document.body.style.position,
-        top: document.body.style.top,
-        left: document.body.style.left,
-        width: document.body.style.width,
-      };
+    const $html = document.documentElement;
+    const $body = document.body;
+    // If bodyStyle is already set, don't set it again.
+    if (bodyStyle === undefined) {
+      htmlStyle = { ...$html.style };
+      bodyStyle = { ...$body.style };
 
       // Update the dom inside an animation frame
       const { scrollY, scrollX, innerHeight } = window;
-      document.body.style.position = "fixed";
-      document.body.style.top = `${-scrollY}px`;
-      document.body.style.left = `${-scrollX}px`;
-      document.body.style.width = "100%";
+
+      $html.style.height = "100%";
+      $html.style.overflow = "hidden";
+
+      $body.style.position = "fixed";
+      $body.style.top = `${-scrollY}px`;
+      $body.style.left = `${-scrollX}px`;
+      $body.style.width = "100%";
+      $body.style.height = "auto";
+      $body.style.overflow = "hidden";
 
       setTimeout(
         () =>
@@ -146,7 +159,7 @@ const setPositionFixed = () =>
             const bottomBarHeight = innerHeight - window.innerHeight;
             if (bottomBarHeight && scrollY >= innerHeight) {
               // Move the content further up so that the bottom bar doesn't hide it
-              document.body.style.top = -(scrollY + bottomBarHeight) + "px";
+              $body.style.top = -(scrollY + bottomBarHeight) + "px";
             }
           }),
         300
@@ -155,21 +168,29 @@ const setPositionFixed = () =>
   });
 
 const restorePositionSetting = () => {
-  if (previousBodyPosition !== undefined) {
+  if (bodyStyle !== undefined) {
     // Convert the position from "px" to Int
     const y = -parseInt(document.body.style.top, 10);
     const x = -parseInt(document.body.style.left, 10);
 
     // Restore styles
-    document.body.style.position = previousBodyPosition.position;
-    document.body.style.top = previousBodyPosition.top;
-    document.body.style.left = previousBodyPosition.left;
-    document.body.style.width = previousBodyPosition.width;
+    const $html = document.documentElement;
+    const $body = document.body;
+
+    $html.style.height = htmlStyle?.height || "";
+    $html.style.overflow = htmlStyle?.overflow || "";
+
+    $body.style.position = bodyStyle.position || "";
+    $body.style.top = bodyStyle.top || "";
+    $body.style.left = bodyStyle.left || "";
+    $body.style.width = bodyStyle.width || "";
+    $body.style.height = bodyStyle.height || "";
+    $body.style.overflow = bodyStyle.overflow || "";
 
     // Restore scroll
     window.scrollTo(x, y);
 
-    previousBodyPosition = undefined;
+    bodyStyle = undefined;
   }
 };
 
@@ -229,7 +250,6 @@ export const disableBodyScroll = (
       ? (locksIndex?.get(targetElement) as number) + 1
       : 1
   );
-  console.log("locksIndex", locksIndex);
   // disableBodyScroll must not have been called on this targetElement before
   if (locks.some((lock) => lock.targetElement === targetElement)) {
     return;
@@ -324,6 +344,7 @@ export const enableBodyScroll = (targetElement: HTMLElement): void => {
   );
   if (locksIndex?.get(targetElement) === 0) {
     locks = locks.filter((lock) => lock.targetElement !== targetElement);
+    locksIndex?.delete(targetElement);
   }
 
   if (isIosDevice) {
@@ -340,12 +361,11 @@ export const enableBodyScroll = (targetElement: HTMLElement): void => {
     }
   }
 
-  if (locksIndex?.get(targetElement) === 0) {
+  if (locks.length === 0) {
     if (isIosDevice) {
       restorePositionSetting();
     } else {
       restoreOverflowSetting();
     }
-    locksIndex?.delete(targetElement);
   }
 };

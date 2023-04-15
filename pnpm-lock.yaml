@@ -10,6 +10,9 @@ devDependencies:
   vite:
     specifier: ^4.2.0
     version: 4.2.1
+  vite-plugin-banner:
+    specifier: ^0.7.0
+    version: 0.7.0
   vite-plugin-dts:
     specifier: ^1.7.1
     version: 1.7.3(vite@4.2.1)
@@ -2224,6 +2227,10 @@ packages:
   /validator@13.9.0:
     resolution: {integrity: sha512-B+dGG8U3fdtM0/aNK4/X8CXq/EcxU2WPrPEkJGslb47qyHsxmbggTWK0yEA4qnYVNF+nxNlN88o14hIcPmSIEA==}
     engines: {node: '>= 0.10'}
+    dev: true
+
+  /vite-plugin-banner@0.7.0:
+    resolution: {integrity: sha512-g0cm0wbrR6b6wR8FWtfD1RSDPacdumKEOAnneXv+NpJ9ez+j6rklRv6lMOO+aPf+Y6Zb8OzgIk0FXBZ6h+DeZQ==}
     dev: true
 
   /vite-plugin-dts@1.7.3(vite@4.2.1):
