@@ -1,5 +1,11 @@
 # body-scroll-lock-upgrade
 
+## 1.0.3
+
+### Patch Changes
+
+- Added a vue3 code example
+
 ## 1.0.1
 
 ### Patch Changes
