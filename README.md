@@ -267,8 +267,8 @@ bodyScrollLock.clearAllBodyScrollLocks();
 
 Check out the demo, powered by Vercel.
 
-- https://bodyscrolllock.vercel.app for a basic example
-- https://bodyscrolllock-modal.vercel.app for an example with a modal.
+- <https://bodyscrolllock.vercel.app> for a basic example
+- <https://bodyscrolllock-modal.vercel.app> for an example with a modal.
 
 ## Functions
 
@@ -346,5 +346,7 @@ Html:
 
 ## References
 
-https://medium.com/jsdownunder/locking-body-scroll-for-all-devices-22def9615177
-https://stackoverflow.com/questions/41594997/ios-10-safari-prevent-scrolling-behind-a-fixed-overlay-and-maintain-scroll-posi
+<https://medium.com/jsdownunder/locking-body-scroll-for-all-devices-22def9615177>
+<https://stackoverflow.com/questions/41594997/ios-10-safari-prevent-scrolling-behind-a-fixed-overlay-and-maintain-scroll-posi>
+
+## test
