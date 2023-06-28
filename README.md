@@ -242,7 +242,6 @@ Then in the javascript:
 
 <script type="module">
   // https://cdn.jsdelivr.net/gh/rick-liruixin/body-scroll-lock-upgrade@v1.0.3.1/lib/index.esm.js
-  // https://cdn.jsdelivr.net/gh/rick-liruixin/body-scroll-lock-upgrade@v1.0.3.1/lib/index.esm.js.map
 
   import {
     clearAllBodyScrollLocks,
