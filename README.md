@@ -236,31 +236,37 @@ export class SomeComponent implements OnDestroy {
 
 ##### Vanilla JS
 
-In the html:
-
-```html
-<head>
-  <script src="some-path-where-you-dump-the-javascript-libraries/lib/bodyScrollLock.js"></script>
-</head>
-```
-
 Then in the javascript:
 
 ```javascript
-// 1. Get a target element that you want to persist scrolling for (such as a modal/lightbox/flyout/nav).
-// Specifically, the target element is the one we would like to allow scroll on (NOT a parent of that element).
-// This is also the element to apply the CSS '-webkit-overflow-scrolling: touch;' if desired.
-const targetElement = document.querySelector("#someElementId");
 
-// 2. ...in some event handler after showing the target element...disable body scroll
-bodyScrollLock.disableBodyScroll(targetElement);
+<script type="module">
+  // https://cdn.jsdelivr.net/gh/rick-liruixin/body-scroll-lock-upgrade@v1.0.3.1/lib/index.esm.js
+  // https://cdn.jsdelivr.net/gh/rick-liruixin/body-scroll-lock-upgrade@v1.0.3.1/lib/index.esm.js.map
 
-// 3. ...in some event handler after hiding the target element...
-bodyScrollLock.enableBodyScroll(targetElement);
+  import {
+    clearAllBodyScrollLocks,
+    disableBodyScroll,
+    enableBodyScroll,
+  } from "https://cdn.jsdelivr.net/gh/rick-liruixin/body-scroll-lock-upgrade@v1.0.3.1/lib/index.esm.js";
 
-// 4. Useful if we have called disableBodyScroll for multiple target elements,
-// and we just want a kill-switch to undo all that.
-bodyScrollLock.clearAllBodyScrollLocks();
+  // 1. Get a target element that you want to persist scrolling for (such as a modal/lightbox/flyout/nav).
+  // Specifically, the target element is the one we would like to allow scroll on (NOT a parent of that element).
+  // This is also the element to apply the CSS '-webkit-overflow-scrolling: touch;' if desired.
+  const targetElement = document.querySelector("#someElementId");
+
+  // 2. ...in some event handler after showing the target element...disable body scroll
+  disableBodyScroll(targetElement);
+
+  // 3. ...in some event handler after hiding the target element...
+  enableBodyScroll(targetElement);
+
+  // 4. Useful if we have called disableBodyScroll for multiple target elements,
+  // and we just want a kill-switch to undo all that.
+  clearAllBodyScrollLocks();
+
+</script>
+
 ```
 
 ## Demo
