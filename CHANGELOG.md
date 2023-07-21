@@ -1,5 +1,11 @@
 # body-scroll-lock-upgrade
 
+## 1.0.4
+
+### Patch Changes
+
+- add umd
+
 ## 1.0.3
 
 ### Patch Changes
