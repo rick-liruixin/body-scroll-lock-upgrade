@@ -4,6 +4,9 @@
   "description": "Enables body scroll locking (for iOS Mobile and Tablet, Android, desktop Safari/Chrome/Firefox) without breaking scrolling of a target element (eg. modal/lightbox/flyouts/nav-menus)",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
+  "browser": {
+    "bodyScrollLockUpgrade": "lib/index.umd.js"
+  },
   "typings": "lib/index.d.ts",
   "author": "Rick.li",
   "homepage": "https://github.com/rick-liruixin/body-scroll-lock-upgrade",
