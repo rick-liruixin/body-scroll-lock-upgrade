@@ -309,11 +309,16 @@
     </p>
 
     <script type="module">
+      // import {
+      //   clearAllBodyScrollLocks,
+      //   disableBodyScroll,
+      //   enableBodyScroll,
+      // } from "../../lib/index.esm.js";
       import {
         clearAllBodyScrollLocks,
         disableBodyScroll,
         enableBodyScroll,
-      } from "../../lib/index.esm.js";
+      } from "https://cdn.jsdelivr.net/gh/rick-liruixin/body-scroll-lock-upgrade@v1.0.4/lib/index.esm.js";
       const open = () => {
         document.querySelector(".dialog").style.display = "block";
         document.querySelector(".mask").style.display = "block";

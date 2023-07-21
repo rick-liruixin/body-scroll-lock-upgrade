@@ -43,9 +43,9 @@ _Aren't the alternative approaches sufficient?_
 ## Install
 
     $ yarn add body-scroll-lock-upgrade
-    
+
     or
-    
+
     $ npm install body-scroll-lock-upgrade
 
 You can also load via a `<script src="lib/bodyScrollLock.js"></script>` tag (refer to the lib folder).
@@ -241,13 +241,12 @@ Then in the javascript:
 ```javascript
 
 <script type="module">
-  // https://cdn.jsdelivr.net/gh/rick-liruixin/body-scroll-lock-upgrade@v1.0.3.1/lib/index.esm.js
 
   import {
     clearAllBodyScrollLocks,
     disableBodyScroll,
     enableBodyScroll,
-  } from "https://cdn.jsdelivr.net/gh/rick-liruixin/body-scroll-lock-upgrade@v1.0.3.1/lib/index.esm.js";
+  } from "https://cdn.jsdelivr.net/gh/rick-liruixin/body-scroll-lock-upgrade@v1.0.4/lib/index.esm.js";
 
   // 1. Get a target element that you want to persist scrolling for (such as a modal/lightbox/flyout/nav).
   // Specifically, the target element is the one we would like to allow scroll on (NOT a parent of that element).
@@ -266,8 +265,8 @@ Then in the javascript:
 
 </script>
 
-// umd
-<script src="../../lib/index.umd.js"></script>
+// UMD
+<script src="https://cdn.jsdelivr.net/gh/rick-liruixin/body-scroll-lock-upgrade@v1.0.4/lib/index.umd.js"></script>
 <script>
   const open = () => {
     document.querySelector(".dialog").style.display = "block";
@@ -285,8 +284,6 @@ Then in the javascript:
   document.getElementById("close").addEventListener("click", close);
 </script>
 ```
-
-
 
 ## Demo
 
