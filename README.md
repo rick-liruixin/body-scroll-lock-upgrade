@@ -43,9 +43,9 @@ _Aren't the alternative approaches sufficient?_
 ## Install
 
     $ yarn add body-scroll-lock-upgrade
-
+    
     or
-
+    
     $ npm install body-scroll-lock-upgrade
 
 You can also load via a `<script src="lib/bodyScrollLock.js"></script>` tag (refer to the lib folder).
@@ -266,7 +266,27 @@ Then in the javascript:
 
 </script>
 
+// umd
+<script src="../../lib/index.umd.js"></script>
+<script>
+  const open = () => {
+    document.querySelector(".dialog").style.display = "block";
+    document.querySelector(".mask").style.display = "block";
+    const targetElement = document.querySelector(".dialog");
+    bodyScrollLockUpgrade.disableBodyScroll(targetElement);
+  };
+  const close = () => {
+    document.querySelector(".dialog").style.display = "none";
+    document.querySelector(".mask").style.display = "none";
+    const targetElement = document.querySelector(".dialog");
+    bodyScrollLockUpgrade.enableBodyScroll(targetElement);
+  };
+  document.getElementById("open").addEventListener("click", open);
+  document.getElementById("close").addEventListener("click", close);
+</script>
 ```
+
+
 
 ## Demo
 

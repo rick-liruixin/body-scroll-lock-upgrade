@@ -14,8 +14,14 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: resolvePath("./src/index.ts"),
-      formats: ["es", "cjs"],
-      fileName: (format) => (format === "es" ? `index.esm.js` : `index.js`),
+      name: "bodyScrollLockUpgrade",
+      formats: ["es", "cjs", "umd"],
+      fileName: (format) =>
+        format === "es"
+          ? `index.esm.js`
+          : format === "umd"
+          ? `index.umd.js`
+          : `index.js`,
     },
   },
   plugins: [
