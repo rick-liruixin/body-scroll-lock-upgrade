@@ -19,23 +19,23 @@ interface Lock {
 
 // Older browsers don't support event options, feature detect it.
 let hasPassiveEvents = false;
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   const passiveTestOptions: any = {
     get passive() {
       hasPassiveEvents = true;
       return undefined;
     },
   };
-  (window as any).addEventListener("testPassive", null, passiveTestOptions);
-  (window as any).removeEventListener("testPassive", null, passiveTestOptions);
+  (window as any).addEventListener('testPassive', null, passiveTestOptions);
+  (window as any).removeEventListener('testPassive', null, passiveTestOptions);
 }
 
 const isIosDevice =
-  typeof window !== "undefined" &&
+  typeof window !== 'undefined' &&
   window.navigator &&
   window.navigator.platform &&
   (/iP(ad|hone|od)/.test(window.navigator.platform) ||
-    (window.navigator.platform === "MacIntel" &&
+    (window.navigator.platform === 'MacIntel' &&
       window.navigator.maxTouchPoints > 1));
 type HandleScrollEvent = TouchEvent;
 
@@ -89,13 +89,14 @@ const setOverflowHidden = (options?: BodyScrollOptions) => {
     const reserveScrollBarGap =
       !!options && options.reserveScrollBarGap === true;
     const scrollBarGap =
-      window.innerWidth - document.documentElement.clientWidth;
+      window.innerWidth -
+      document.documentElement.getBoundingClientRect().width;
 
     if (reserveScrollBarGap && scrollBarGap > 0) {
       const computedBodyPaddingRight = parseInt(
         window
           .getComputedStyle(document.body)
-          .getPropertyValue("padding-right"),
+          .getPropertyValue('padding-right'),
         10
       );
       previousBodyPaddingRight = document.body.style.paddingRight;
@@ -108,7 +109,7 @@ const setOverflowHidden = (options?: BodyScrollOptions) => {
   // If previousBodyOverflowSetting is already set, don't set it again.
   if (previousBodyOverflowSetting === undefined) {
     previousBodyOverflowSetting = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
   }
 };
 
@@ -142,15 +143,15 @@ const setPositionFixed = () =>
       // Update the dom inside an animation frame
       const { scrollY, scrollX, innerHeight } = window;
 
-      $html.style.height = "100%";
-      $html.style.overflow = "hidden";
+      $html.style.height = '100%';
+      $html.style.overflow = 'hidden';
 
-      $body.style.position = "fixed";
+      $body.style.position = 'fixed';
       $body.style.top = `${-scrollY}px`;
       $body.style.left = `${-scrollX}px`;
-      $body.style.width = "100%";
-      $body.style.height = "auto";
-      $body.style.overflow = "hidden";
+      $body.style.width = '100%';
+      $body.style.height = 'auto';
+      $body.style.overflow = 'hidden';
 
       setTimeout(
         () =>
@@ -159,7 +160,7 @@ const setPositionFixed = () =>
             const bottomBarHeight = innerHeight - window.innerHeight;
             if (bottomBarHeight && scrollY >= innerHeight) {
               // Move the content further up so that the bottom bar doesn't hide it
-              $body.style.top = -(scrollY + bottomBarHeight) + "px";
+              $body.style.top = -(scrollY + bottomBarHeight) + 'px';
             }
           }),
         300
@@ -177,15 +178,15 @@ const restorePositionSetting = () => {
     const $html = document.documentElement;
     const $body = document.body;
 
-    $html.style.height = htmlStyle?.height || "";
-    $html.style.overflow = htmlStyle?.overflow || "";
+    $html.style.height = htmlStyle?.height || '';
+    $html.style.overflow = htmlStyle?.overflow || '';
 
-    $body.style.position = bodyStyle.position || "";
-    $body.style.top = bodyStyle.top || "";
-    $body.style.left = bodyStyle.left || "";
-    $body.style.width = bodyStyle.width || "";
-    $body.style.height = bodyStyle.height || "";
-    $body.style.overflow = bodyStyle.overflow || "";
+    $body.style.position = bodyStyle.position || '';
+    $body.style.top = bodyStyle.top || '';
+    $body.style.left = bodyStyle.left || '';
+    $body.style.width = bodyStyle.width || '';
+    $body.style.height = bodyStyle.height || '';
+    $body.style.overflow = bodyStyle.overflow || '';
 
     // Restore scroll
     window.scrollTo(x, y);
@@ -239,7 +240,7 @@ export const disableBodyScroll = (
   if (!targetElement) {
     // eslint-disable-next-line no-console
     console.error(
-      "disableBodyScroll unsuccessful - targetElement must be provided when calling disableBodyScroll on IOS devices."
+      'disableBodyScroll unsuccessful - targetElement must be provided when calling disableBodyScroll on IOS devices.'
     );
     return;
   }
@@ -283,7 +284,7 @@ export const disableBodyScroll = (
 
     if (!documentListenerAdded) {
       document.addEventListener(
-        "touchmove",
+        'touchmove',
         preventDefault,
         hasPassiveEvents ? { passive: false } : undefined
       );
@@ -302,7 +303,7 @@ export const clearAllBodyScrollLocks = (): void => {
 
     if (documentListenerAdded) {
       (document as any).removeEventListener(
-        "touchmove",
+        'touchmove',
         preventDefault,
         hasPassiveEvents ? { passive: false } : undefined
       );
@@ -331,7 +332,7 @@ export const enableBodyScroll = (targetElement: HTMLElement): void => {
   if (!targetElement) {
     // eslint-disable-next-line no-console
     console.error(
-      "enableBodyScroll unsuccessful - targetElement must be provided when calling enableBodyScroll on IOS devices."
+      'enableBodyScroll unsuccessful - targetElement must be provided when calling enableBodyScroll on IOS devices.'
     );
     return;
   }
@@ -353,7 +354,7 @@ export const enableBodyScroll = (targetElement: HTMLElement): void => {
 
     if (documentListenerAdded && locks.length === 0) {
       (document as any).removeEventListener(
-        "touchmove",
+        'touchmove',
         preventDefault,
         hasPassiveEvents ? { passive: false } : undefined
       );

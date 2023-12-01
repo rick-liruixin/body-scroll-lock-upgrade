@@ -1,5 +1,12 @@
 # body-scroll-lock-upgrade
 
+## 1.1.0
+
+### Minor Changes
+
+- optimization：document.documentElement.clientWidth -> document.documentElement.getBoundingClientRect().width
+  https://github.com/rick-liruixin/body-scroll-lock-upgrade/issues/16
+
 ## 1.0.4
 
 ### Patch Changes
