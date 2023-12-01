@@ -56,14 +56,14 @@ You can also load via a `<script src="lib/bodyScrollLock.js"></script>` tag (ref
 
 ```javascript
 // 1. Import the functions
-const bodyScrollLock = require("body-scroll-lock-upgrade");
+const bodyScrollLock = require('body-scroll-lock-upgrade');
 const disableBodyScroll = bodyScrollLock.disableBodyScroll;
 const enableBodyScroll = bodyScrollLock.enableBodyScroll;
 
 // 2. Get a target element that you want to persist scrolling for (such as a modal/lightbox/flyout/nav).
 // Specifically, the target element is the one we would like to allow scroll on (NOT a parent of that element).
 // This is also the element to apply the CSS '-webkit-overflow-scrolling: touch;' if desired.
-const targetElement = document.querySelector("#someElementId");
+const targetElement = document.querySelector('#someElementId');
 
 // 3. ...in some event handler after showing the target element...disable body scroll
 disableBodyScroll(targetElement);
@@ -80,7 +80,7 @@ import {
   disableBodyScroll,
   enableBodyScroll,
   clearAllBodyScrollLocks,
-} from "body-scroll-lock-upgrade";
+} from 'body-scroll-lock-upgrade';
 
 class SomeComponent extends React.Component {
   targetElement = null;
@@ -89,7 +89,7 @@ class SomeComponent extends React.Component {
     // 2. Get a target element that you want to persist scrolling for (such as a modal/lightbox/flyout/nav).
     // Specifically, the target element is the one we would like to allow scroll on (NOT a parent of that element).
     // This is also the element to apply the CSS '-webkit-overflow-scrolling: touch;' if desired.
-    this.targetElement = document.querySelector("#targetElementId");
+    this.targetElement = document.querySelector('#targetElementId');
   }
 
   showTargetElement = () => {
@@ -128,7 +128,7 @@ import {
   disableBodyScroll,
   enableBodyScroll,
   clearAllBodyScrollLocks,
-} from "body-scroll-lock-upgrade";
+} from 'body-scroll-lock-upgrade';
 
 class SomeComponent extends React.Component {
   // 2. Initialise your ref and targetElement here
@@ -190,25 +190,25 @@ class SomeOtherComponent extends React.Component {
 ##### Angular
 
 ```javascript
-import { Component, ElementRef, OnDestroy, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 
 // 1. Import the functions
 import {
   disableBodyScroll,
   enableBodyScroll,
   clearAllBodyScrollLocks,
-} from "body-scroll-lock-upgrade";
+} from 'body-scroll-lock-upgrade';
 
 @Component({
-  selector: "app-scroll-block",
-  templateUrl: "./scroll-block.component.html",
-  styleUrls: ["./scroll-block.component.css"],
+  selector: 'app-scroll-block',
+  templateUrl: './scroll-block.component.html',
+  styleUrls: ['./scroll-block.component.css'],
 })
 export class SomeComponent implements OnDestroy {
   // 2. Get a target element that you want to persist scrolling for (such as a modal/lightbox/flyout/nav).
   // Specifically, the target element is the one we would like to allow scroll on (NOT a parent of that element).
   // This is also the element to apply the CSS '-webkit-overflow-scrolling: touch;' if desired.
-  @ViewChild("scrollTarget") scrollTarget: ElementRef;
+  @ViewChild('scrollTarget') scrollTarget: ElementRef;
 
   showTargetElement() {
     // ... some logic to show target element
@@ -246,7 +246,7 @@ Then in the javascript:
     clearAllBodyScrollLocks,
     disableBodyScroll,
     enableBodyScroll,
-  } from "https://cdn.jsdelivr.net/gh/rick-liruixin/body-scroll-lock-upgrade@v1.0.4/lib/index.esm.js";
+  } from "https://cdn.jsdelivr.net/gh/rick-liruixin/body-scroll-lock-upgrade@v1.1.0/lib/index.esm.js";
 
   // 1. Get a target element that you want to persist scrolling for (such as a modal/lightbox/flyout/nav).
   // Specifically, the target element is the one we would like to allow scroll on (NOT a parent of that element).
@@ -266,7 +266,7 @@ Then in the javascript:
 </script>
 
 // UMD
-<script src="https://cdn.jsdelivr.net/gh/rick-liruixin/body-scroll-lock-upgrade@v1.0.4/lib/index.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/rick-liruixin/body-scroll-lock-upgrade@v1.1.0/lib/index.umd.js"></script>
 <script>
   const open = () => {
     document.querySelector(".dialog").style.display = "block";
@@ -312,8 +312,8 @@ this gap is filled by a `padding-right` on the body element. If `disableBodyScro
 or `clearAllBodyScrollLocks` is called, the `padding-right` is automatically reset to the previous value.
 
 ```js
-import { disableBodyScroll } from "body-scroll-lock-upgrade";
-import type { BodyScrollOptions } from "body-scroll-lock-upgrade";
+import { disableBodyScroll } from 'body-scroll-lock-upgrade';
+import type { BodyScrollOptions } from 'body-scroll-lock-upgrade';
 
 const options: BodyScrollOptions = {
   reserveScrollBarGap: true,
@@ -336,7 +336,7 @@ See below for 2 use cases:
 
 ```javascript
 disableBodyScroll(container, {
-  allowTouchMove: (el) => el.tagName === "TEXTAREA",
+  allowTouchMove: (el) => el.tagName === 'TEXTAREA',
 });
 ```
 
@@ -348,7 +348,7 @@ Javascript:
 disableBodyScroll(container, {
   allowTouchMove: (el) => {
     while (el && el !== document.body) {
-      if (el.getAttribute("body-scroll-lock-ignore") !== null) {
+      if (el.getAttribute('body-scroll-lock-ignore') !== null) {
         return true;
       }
 

@@ -1,6 +1,6 @@
 {
   "name": "body-scroll-lock-upgrade",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Enables body scroll locking (for iOS Mobile and Tablet, Android, desktop Safari/Chrome/Firefox) without breaking scrolling of a target element (eg. modal/lightbox/flyouts/nav-menus)",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -42,7 +42,7 @@
   "scripts": {
     "changeset": "changeset",
     "version": "changeset version && tsc && vite build",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && cp src/body-scroll-lock.ts examples/next/hooks/body-scroll-lock.ts",
     "tsc": "tsc"
   },
   "devDependencies": {
